@@ -90,6 +90,7 @@ router.put("/:id", getTasks, async (req, res) => {
         const task = res.task
         task.title = req.body.title || task.title
         task.description = req.body.description || task.description
+        task.completed = typeof req.body.completed !== "undefined" ? req.body.completed : task.completed;
 
         const updatedTask = await task.save()
         res.json(updatedTask)
